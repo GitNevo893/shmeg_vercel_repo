@@ -67,3 +67,5 @@ socket.onmessage = async (msg) => {
     socket.send(JSON.stringify(answer));
   }
 };
+
+}

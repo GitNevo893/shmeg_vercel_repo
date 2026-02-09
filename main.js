@@ -27,6 +27,19 @@ async function startWebRTC() {
   // 2. create peer connection
   pc = new RTCPeerConnection();
 
+  pc.ondatachannel = (event) => {
+  const channel = event.channel;
+
+  channel.onopen = () => {
+    console.log("DataChannel open!");
+    channel.send("Hello from browser");
+  };
+
+  channel.onmessage = (event) => {
+    console.log("Received from Pi:", event.data);
+  };
+};
+
   // 3. send mic audio
   localStream.getTracks().forEach(track =>
     pc.addTrack(track, localStream)

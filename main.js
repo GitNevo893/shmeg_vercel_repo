@@ -59,9 +59,6 @@ socket.onopen = () => {
   console.log("✅ WebSocket connected");
 };
   
-socket.onmessage = async (msg) => {
-  const data = JSON.parse(msg.data);
-
  socket.onmessage = async (msg) => {
   const data = JSON.parse(msg.data);
 

@@ -60,6 +60,7 @@ pc = new RTCPeerConnection({
   };
 
   socket.onmessage = async (msg) => {
+    console.log("Received signaling message:", msg.data);
     let text = msg.data instanceof Blob
       ? await msg.data.text()
       : msg.data;

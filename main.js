@@ -21,7 +21,7 @@ async function startWebRTC() {
   localStream = await navigator.mediaDevices.getUserMedia({ audio: true });
   localStream.getAudioTracks()[0].enabled = false;
 
-  pc = new RTCPeerConnection({
+pc = new RTCPeerConnection({
   iceServers: [
     { urls: "stun:stun.l.google.com:19302" },
     {

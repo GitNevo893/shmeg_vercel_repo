@@ -31,6 +31,16 @@ pc = new RTCPeerConnection({
     }
   ]
 });
+pc.ontrack = (event) => {
+  console.log("🎵 Audio received from Pi");
+
+  const audio = document.createElement("audio");
+  audio.srcObject = event.streams[0];
+  audio.autoplay = true;
+  audio.controls = true;
+
+  document.body.appendChild(audio);
+};
 
   pc.onconnectionstatechange = () => {
     console.log("Connection state:", pc.connectionState);

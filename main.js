@@ -38,6 +38,8 @@ pc.ontrack = (event) => {
   audio.srcObject = event.streams[0];
   audio.autoplay = true;
   audio.controls = true;
+  audio.muted = false;
+  audio.volume = 1.0;
 
   document.body.appendChild(audio);
   audio.play().catch(e => console.log("Playback error:", e));
@@ -94,15 +96,8 @@ pc.ontrack = (event) => {
       await pc.addIceCandidate(data.candidate);
     }
   };
-
-  pc.onicecandidate = (event) => {
-    if (event.candidate) {
-      socket.send(JSON.stringify({
-        type: "ice",
-        candidate: event.candidate
-      }));
-    }
   };
+
 pc.onicecandidate = (event) => {
   if (event.candidate) {
     console.log("LOCAL ICE:", event.candidate.candidate);
